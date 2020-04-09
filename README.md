@@ -124,6 +124,65 @@ The redirect URI in the request, http://localhost:5000/auth/google/callback, doe
 - `npm run dev`: run nodemon
 
 ## Section4: Adding MongoDB
-###
+### 30. Server Structure Refactor
+- Refactoring
+- Create `routes`, `servcies` folder
+- Break index.js into several pieces
+- Inside `routes`, create `autoRoute.js` and cut and paste below
+```
+const passport = require('passport');
+module.exports = (app) => {
 
+    app.get('/auth/google', passport.authenticate('google',{
+        scope: ['profile', 'email']
+    })
+    );
 
+    app.get('/auth/google/callback', passport.authenticate('google'));
+};
+```
+- Create arrow function 
+
+- Inside `services`, create `passport.js` and cut and paste below
+```
+const passport = require('passport');
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const keys = require('../config/keys')
+
+passport.use(new GoogleStrategy({
+    clientID: keys.googleClientID,
+    clientSecret: keys.googleClientSecret,
+    callbackURL: '/auth/google/callback'
+    }, (accessToken, refreshToken, profile, done) => {
+        console.log('access token', accessToken);
+        console.log('refresh token', refreshToken);
+        console.log('profile', profile);
+    })
+);
+
+```
+
+- Edit `index.js`
+```
+const express = require('express');
+require('./services/passport');
+
+const app = express();
+require('./routes/authRoutes')(app); 
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT);
+
+```
+- `require('./routes/authRoutes')(app)`: When we require the authRoutes file, it returns a function. That's what we returned or thats what we exported from that file. Returns a function with an immediately call that fucntion with the app object. So the second set of parentheses immediately invokes or immediately callst the function that we just required in. Tha app is passed into that arrow function 
+
+### 31. The Theory of Authentication
+- HTTP is Stateless
+- By default, information by bewteen two requests is not shared
+- So we can't really identify who is making any given request between any given number of requests
+- How to solve it?
+- Log in --> server gives a unique identifying piece of info --> cookie, token is given whatever
+- Any follow up request that our browser ever makes to the server, we are going to include that token(cookie) that proves that we ar the same person who had made that original log in request like five migutes ago or one day ago.
+- `cookie based authentication`
+- cookie is given by server as a header to the browser
+- The browser is going to automatically strip off this token. It is going to store it into the browser's memory and then the browser is going to automatically append that cookie with andy follow up request being sent to the server.
