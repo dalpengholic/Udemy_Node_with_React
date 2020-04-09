@@ -110,6 +110,20 @@ The redirect URI in the request, http://localhost:5000/auth/google/callback, doe
 ```
 - Access `https://console.developers.google.com/apis/credentials/oauthclient/658173462832-g6grcsnj52rbmqv6pp2d1nmjo0adrjti.apps.googleusercontent.com?project=658173462832` --> update `Authorised redirect URIs`--> `http://localhost:5000/auth/google/callback`
 
+### 27. OAuth Callback
+- `app.get('/auth/google/callback', passport.authenticate('google'));`
 
+### 28. Access and Refresh Tokens
+- 
+
+### 29. Nodemon Setup
+- Setup
+- `npm install --save nodemon`: Run node index.js automatically
+- Open package.json 
+- `"dev": "nodemon index.js"` inside package.json
+- `npm run dev`: run nodemon
+
+## Section4: Adding MongoDB
+###
 
 
