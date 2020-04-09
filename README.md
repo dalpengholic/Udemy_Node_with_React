@@ -99,3 +99,17 @@ a request comes into this route. Tell express to involve passport
 - `scope: ['profile', 'email']`: second argument, options object passed in scope. The scope specifies to GOogle like the actual Google servers what access we want to have inside of this user's profile.
 - In other words, we are asking Google to give use access to this user's profile information and their email address as well.
 
+### 26. Authorized Redirect URI's
+- `https://accounts.google.com/o/oauth2/v2/auth?`: base url
+- `response_type=code&`: query string, response that code back
+- `redirect_uri=http%3A%2F%2Flocalhost%3A5000%2Fauth%2Fgoogle%2Fcallback&`: 
+- `scope=profile%20email&`: we ask profile and email
+- `client_id=658173462832-g6grcsnj52rbmqv6pp2d1nmjo0adrjti.apps.googleusercontent.com`: identifies our app to google's servers
+```
+The redirect URI in the request, http://localhost:5000/auth/google/callback, does not match the ones authorized for the OAuth client. To update the authorized redirect URIs, visit: https://console.developers.google.com/apis/credentials/oauthclient/658173462832-g6grcsnj52rbmqv6pp2d1nmjo0adrjti.apps.googleusercontent.com?project=658173462832
+```
+- Access `https://console.developers.google.com/apis/credentials/oauthclient/658173462832-g6grcsnj52rbmqv6pp2d1nmjo0adrjti.apps.googleusercontent.com?project=658173462832` --> update `Authorised redirect URIs`--> `http://localhost:5000/auth/google/callback`
+
+
+
+
