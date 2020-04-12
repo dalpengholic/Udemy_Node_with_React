@@ -239,4 +239,32 @@ require('./services/passport');
 - In other words we are seeing that error message because we are attempting to make use of the user model before we have actually defined it. So to solve that issue all we have to do is change the order of these two require statements.
 
 ### 41. Mongoose Queries
+- `User.findOne({ googleId: profile.id })`: Initiate a query over all the records inside the collection to do so
+- `{ googleId: profile.id }`: Search cliteria googleId equal to profile.id
+- `User.findOne({ googleId: profile.id })`: Instead the query returns a promise a promise is a tool that we use with javascript for handling asynchronous code
+- `then((existingUser)`: So this(`existingUser`) will be a model instance that represents a user who was found
+
+### 42. Passport Callbacks
+- After creation or found a user, call 'done' 
+- In passport.js
+```
+new User({ googleId: profile.id })
+.save()
+.then(user => done(null, user));
+```
+- `new User({ googleId: profile.id })`: a new mongoose model instance, single recorde of inside of our collection
+- `.save()`: So this creates a new model right here a new model instance we then save that instance 
+- `.then(user => done(null, user));`: and in the callback, we get another model instance.
+
+
+### 43.
 - 
+```
+passport.serializeUser((user, done) => {
+    done(null, user.id);
+});
+```
+- `done(null, user.id);` : user.id is the id created and stored by and in MongoDB
+- After sign in, using user id in MongoDB
+
+### 44. Deserialize User
