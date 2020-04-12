@@ -221,3 +221,22 @@ mongoose.model('users', userSchema);
 - `const { Schema } = mongoose;` : mongoose has to know all properties. The schema will describe what every individual property personally every individual record is going to look like.
 - `const userSchema = new Schema` : So I'm going to say Konst user schema equals new schema. And then we're going to pass it an object.  This object right here is going to describe all the different properties we have.
 - `mongoose.model('users', userSchema);`: name of the collection 'users', user schema 'userSchema'
+
+### 39. Saving Model Instances
+- However for everything that uses mongoose model classes like what we just created inside of year we are not going to use require statements and there's a very good reason for that.
+- In `passport.js`
+- `const mongoose = require('mongoose');`
+- so back inside of users, we created a user schema andwe loaded it into mongoose by saying model and their first argument of users.
+- So one argument(const User = mongoose.model('users');) means we are trying to fetch something out of mongoose. Two arguments(mongoose.model('users', userSchema);) means we're trying to load something into it.
+- `const User = mongoose.model('users');`: User object is model class
+- `new User({ googleId: profile.id }).save();` in passport.js: create new User with googleID and save it
+- Switch order require in index.js
+```
+require('./models/User');
+require('./services/passport');
+```
+- However we first are running that passport file where we tried to pull the model out of mongoose and then only after that do it executes or require in the user model class file which is where we actually define the model class.
+- In other words we are seeing that error message because we are attempting to make use of the user model before we have actually defined it. So to solve that issue all we have to do is change the order of these two require statements.
+
+### 41. Mongoose Queries
+- 
