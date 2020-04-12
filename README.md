@@ -193,3 +193,31 @@ app.listen(PORT);
 - `OAuth Flow`: Sign up(getting google id out of profile) --> Sign out --> Login
 - We need to find some unique indentifying token in the user's Google profile. Is that consistent between logins?
 - Use that to decide if the user is the same
+
+### 36. Connecting Mongoose to MongoDB
+- Add mongoURI in keys.js in config
+- Add `const keys = require('./config/keys')` in index.js
+- Add `mongoose.connect('keys.mongoURI');` in index.js
+
+### 37. Breather and Review
+- Mongo Installed, Mongoose Installed 
+- Need to be able to identify users who sign up and return to our application. We want to save the 'id' in there google profile.
+- Use Mongoose to create a new collection in Mongo called 'users'
+- When user signs in, save new record to the 'users' collection
+
+### 38. Mongoose Model Classes
+- Create `models` folder, create `User.js` inside
+- Input below in `User.js`
+```
+const mongoose = require('mongoose');
+const { Schema } = mongoose; ## == const Schema = mongoose.Schema;
+
+const userSchema = new Schema({
+    googleId: Strings
+});
+
+mongoose.model('users', userSchema);
+```
+- `const { Schema } = mongoose;` : mongoose has to know all properties. The schema will describe what every individual property personally every individual record is going to look like.
+- `const userSchema = new Schema` : So I'm going to say Konst user schema equals new schema. And then we're going to pass it an object.  This object right here is going to describe all the different properties we have.
+- `mongoose.model('users', userSchema);`: name of the collection 'users', user schema 'userSchema'
