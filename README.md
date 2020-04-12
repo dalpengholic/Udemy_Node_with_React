@@ -186,3 +186,10 @@ app.listen(PORT);
 - `cookie based authentication`
 - cookie is given by server as a header to the browser
 - The browser is going to automatically strip off this token. It is going to store it into the browser's memory and then the browser is going to automatically append that cookie with andy follow up request being sent to the server.
+
+### 32. Signing in Users with OAuth
+- `Email and Password Flow`: Sign up(getting email/password) --> Sign out --> Login
+- The two email/password combinations are the same? Great, must be the same person.
+- `OAuth Flow`: Sign up(getting google id out of profile) --> Sign out --> Login
+- We need to find some unique indentifying token in the user's Google profile. Is that consistent between logins?
+- Use that to decide if the user is the same
