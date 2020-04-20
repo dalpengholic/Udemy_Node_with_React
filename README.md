@@ -276,3 +276,9 @@ passport.serializeUser((user, done) => {
 - Now the re-act side of our application however this re-act server is going to eventually take a bunch of different component files. So these are all you can imagine being re-act components right here. It's going to take them all together it's going to bundle them all together using web pack and babbel and then it's going to spit out a single bundle that G-S file that will be loaded up into the browser
 - Why 2 servers?
 - So the reason that we are using two separate servers here is one just very simple one very straightforward and simple reason and that is the fact that create re-act app is bar none the best way to get started with building re-act applications create re-act out has so much pre-built configuration already placed into it that it's going to save us so much time in trying to wire together web pack and babbel and the development server. You know all this bundling stuff and all these other dependencies all the CSSA handling all these other well-packed plug ins all this stuff we get just out of the box for free with create re-act out. And so just using create react to operate here saves us a tremendous amount of time and is worth this extra development or this extra time it takes to figure out exactly how to make the two of them work together nicely. So at the end of the day the reason we're using the separate re-act server is that using Briac create re-act out is absolutely worth it and it gives us a ton of awesome functionality right out of the box.
+
+### 64. Why This Architecture?
+- Cookies
+- CORS request
+- 
+
