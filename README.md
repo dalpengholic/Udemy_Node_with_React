@@ -280,5 +280,44 @@ passport.serializeUser((user, done) => {
 ### 64. Why This Architecture?
 - Cookies
 - CORS request
-- 
+-
+### 65. Async/Await Syntax
+```
+Refactoring
+// function fetchAlbums() {
+//     fetch('https://rallycoding.herokuapp.com/api/music_albums')
+//     .then(res => res.json())
+//     .then(json => console.log(json));
+// }
+// fetchAlbums();
 
+async function fetchAlbums() {
+    const res = await fetch('https://rallycoding.herokuapp.com/api/music_albums')
+    const json = await res.json()
+    console.log(json)
+}
+```
+
+- Whenever we make a request with fetch fetch returns a promise.
+- That promise is resolved with an object that represents the underline request.Now remember any time we work with a promise to get kind of a little notification or a little callback that the promise has been resolved we'd chain on a dot then statement like so this then will be called with the request coming from the original fecche call right here. So we usually receive that as an argument called rez short response and then to read the actual Jaison data that we retrieved from this API from this route right here. We call rez Jaison like so and make sure you get the set of parentheses.
+- So at this point in time we have essentially made some type of asynchronous request that returns a promise when the request is successful. We can change or we can change it then and pass the function.
+- That function will be called if the request is successfully resolved so that then is essentially our opportunity to get a little callback something that says hey responses back here you can now work with it.
+
+- The new syntax just in case I didn't actually mention it is called async/await it is specifically for handling a synchronous code inside of any type of function.
+- First we identify the function inside of our code base that contains some type of asynchronous requests or some type of asynchronous operation.
+- Step one is to put the async keyword in front of that function declaration.So I'm going to say async space function this essentially tells our javascript interpreter that the function that we are about to declare contains some asynchronous code.
+- Now step two is to identify all the different promises that are created within that function. In this case we have two different promises.
+- We have the one that is being created by calling fetch right here. And then we have the second promise that is being created by calling redstart Jaison in front of each of those promises we're going to add the await keyword.
+- finally I'm going to assign the resolve value of fetch and juice on to some intermediate values.
+- Just looking at these two functions I think it's very easy to say this is easier to understand as far as like kind of what it's doing we're essentially making request assigned to this very well calling Jaison or the Jason function on that variable assigning the result to a song and then we cancel log out the response.
+- The interpreter is still going to make the Fettes request right here. And then it's not going to execute any other code inside the function. So we're still going to make that request right here and then essentially the interpreter is going to
+go off and do some other work. It's not going to immediately just like pause an execution right here. It's not going to actually. Oh wait we are not like sleeping or anything like that. Everything is still working the way that it was before.
+- Now the last thing I want to say here is that we are not only restricted to using the async await syntax with functions that are declared using the function keyword. We can also use arrow functions if we choose.
+
+- We would get a little bit of an error because I'm using the const key word here and whenever we use const word. remember we can only declare the variable once and so if we were out right now we would
+
+### 68. Client React Setup
+- `index.js`: We can think of this indexed file as putting together all of the very initial data layer considerations of our application which for example case in point is going to be the redux side of things. So index.js is really going to be all about redux inside of your I'll basically just say redux.
+- `app.js`: Directly underneath the index file, we will make a single component called app jaywalks the update just file is going to be essentially concerned with the rendering layer or the re-act layer of our application. And so this is going to be the primary location for setting up all of our re-act router related logic
+- so we can essentially imagine index.js just for redux stuff, app.js for redux stuff.
+- 
